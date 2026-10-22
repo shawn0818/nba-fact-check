@@ -17,7 +17,7 @@ import re
 import sys
 from pathlib import Path
 
-CURRENT_CRITERIA = "nba-fact-check/7"
+CURRENT_CRITERIA = "nba-fact-check/8"
 """当前判据版本。SKILL.md 里的判据（标签含义、取证规则、汇总规则）一改就递增，并同步改这里。"""
 
 VERDICTS = {"准确", "措辞放大", "误导", "虚假", "查无出处", "无法证实", "不可核查"}

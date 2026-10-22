@@ -1,5 +1,5 @@
 # 案例一：合同金额（layout: number）。过程见 references/cases.md。
-criteria_version: nba-fact-check/7
+criteria_version: nba-fact-check/8
 checked_at: 2026-10-17T16:10+08:00
 supersedes: null
 next_check: null

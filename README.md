@@ -77,7 +77,7 @@ python scripts/selftest.py
 
 ## 判据版本
 
-状态块里的 `criteria_version` 记录判定规则的版本（当前 `nba-fact-check/7`）。规则一改就递增；如果你缓存核查结论，版本号要放进缓存键，否则改了规则旧结论也不会失效。
+状态块里的 `criteria_version` 记录判定规则的版本（当前 `nba-fact-check/8`）。规则一改就递增；如果你缓存核查结论，版本号要放进缓存键，否则改了规则旧结论也不会失效。
 
 ## 已知局限
 
