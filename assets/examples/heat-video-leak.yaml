@@ -1,0 +1,97 @@
+# 复盘案例 A：热火"入队发布会"视频（layout: chain）。截止时间设在事发当天，结局见 notes。
+criteria_version: nba-fact-check/7
+checked_at: 2026-07-22T18:00+08:00
+supersedes: null
+next_check: null
+claim: "詹姆斯去向遭泄露？热火官方账号发布7月27日詹姆斯加盟的新闻发布会预告"
+claim_source:
+  url: https://www.toutiao.com/article/7665197357646037519/
+  publisher: 今日头条
+  published: 2026-07-22
+english_source:
+  found: true
+  who: 热火发言人（Miami Herald 记者 Anthony Chiang 报道）
+  url: https://www.miamiherald.com/sports/nba/miami-heat/article316603817.html
+  excerpt: "the video was mistakenly made public by the team's social media department"
+  searched: []
+  zh_earlier: true                   # 中文“泄露”“漏底”标题出现在 07-21，早于热火澄清
+earliest_source:
+  url: https://www.miamiherald.com/sports/nba/miami-heat/article316603817.html
+  who: 热火发言人（经 Miami Herald 记者 Anthony Chiang）
+  tier: official
+  published: 2026-07-22
+points:
+  - question: "热火是否发布过“LeBron James Introductory Press Conference”视频"
+    asserts: "热火官方账号发布7月27日詹姆斯加盟的新闻发布会预告"
+    scope: fact
+    verdict: 准确
+    basis: reports
+    basis_note: "两路互相独立：Miami Herald 记者 Anthony Chiang（具名）引述热火发言人；The Athletic 另行报道"
+    finding: "热火 YouTube 频道确实出现过这条待发布视频，多家媒体截图报道"
+    evidence: [e1, e2]
+  - question: "这条视频是否说明詹姆斯已决定加盟热火"
+    asserts: "（标题暗示）詹姆斯去向遭泄露，将加盟热火"
+    scope: fact
+    verdict: 误导
+    finding: "热火发言人称视频是社媒团队为“詹姆斯可能加盟”预先准备、误设为公开，不代表任何决定"
+    evidence: [e1, e3]
+overall: 误导
+overall_scope: "视频确实存在（核查点 1 准确），误导之处在于把预备素材当成加盟决定"
+event: null
+evidence:
+  e1:
+    url: https://www.miamiherald.com/sports/nba/miami-heat/article316603817.html
+    publisher: Miami Herald（记者 Anthony Chiang，引述热火发言人）
+    published: 2026-07-22
+    kind: primary
+    access: L1
+    supports: false
+    note: "发言人：视频 mistakenly made public，为詹姆斯可能加盟预先准备"
+  e2:
+    url: https://www.nytimes.com/athletic/7462873/2026/07/22/heat-lebron-james-link-mistake/
+    publisher: The Athletic
+    published: 2026-07-22
+    kind: secondary
+    access: L1
+    supports: false
+    note: "Heat say link for LeBron James introductory presser was a mistake"
+  e3:
+    url: https://sports.yahoo.com/nba/article/heat-confirm-the-lebron-james-introductory-press-conference-youtube-video-was-published-accidentally-after-latest-rumors-043327502.html
+    publisher: Yahoo Sports
+    published: 2026-07-22
+    kind: secondary
+    access: L3
+    supports: false
+    note: "There is no validity to the video"
+missing: null
+notes: "复盘：截止当天即可判为误导。结局：詹姆斯 07-24 宣布加盟 76人，与判定一致。中文侧 07-21 已有“泄露”“暴露了”“漏底了”等标题，早于热火澄清。"
+review:
+  status: pending                    # 示例未经独立复核，所以 publishable 均为 false
+  by: null
+  at: null
+  note: null
+display:
+  layout: chain
+  headline: "热火：视频是误发，不代表任何决定"
+  claim_short: "热火官号泄露詹姆斯加盟"
+  stamp: 误导
+  why: "视频是预先准备的素材，被误设为公开"
+  chain:
+    - who: 中文标题
+      tier: aggregate
+      note: "写成“泄露”“漏底”"
+      drifted: true
+    - who: 社媒猜测
+      tier: aggregate
+      note: "把预备视频当信号"
+      drifted: true
+    - who: 热火YouTube
+      tier: official
+      note: "待发布视频误公开"
+    - who: 热火发言人
+      tier: official
+      note: "确认是误发"
+  sources_line: "依据：热火发言人（Miami Herald报道）；The Athletic"
+  cutoff: "截至 07-22 18:00"
+  publishable: false
+  review_reason: "未经独立复核"

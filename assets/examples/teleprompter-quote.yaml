@@ -1,0 +1,85 @@
+# 案例三：引语与说话人归属（layout: quote）。过程见 references/cases.md。
+criteria_version: nba-fact-check/7
+checked_at: 2026-10-17T19:40+08:00
+supersedes: null
+next_check: null
+claim: "[流言板]詹姆斯：我没看爱德华兹的阿迪广告，他只是在照着提词器念"
+claim_source:
+  url: https://bbs.hupu.com/642947264.html
+  publisher: 虎扑流言板
+  published: 2026-10-14
+english_source:
+  found: true
+  who: 勒布朗·詹姆斯（Mind the Game 原视频 1:23-1:28）
+  url: https://www.youtube.com/watch?v=zNaVP54W_VY
+  excerpt: "Yeah, he just read off the teleprompter. Uh wasn't good."
+  searched: []
+  zh_earlier: false
+earliest_source:
+  url: https://www.youtube.com/watch?v=zNaVP54W_VY
+  who: 勒布朗·詹姆斯（Mind the Game 2026-27 赛季前瞻）
+  tier: official
+  published: 2026-10-13
+points:
+  - question: "他是否说过没看广告、费城也不会更暖和"
+    asserts: "首先，我根本没看那段广告……难道费城就更暖和吗？"
+    scope: attribution
+    verdict: 准确
+    finding: "原视频 0:57 起：I did not watch the spot ... I don't watch anything from the stripes ... I went to Philly"
+    evidence: [e1]
+  - question: "“他只是照着提词器念”是不是勒布朗说的"
+    asserts: "他只不过是照着提词器念台词罢了"
+    scope: attribution
+    verdict: 准确
+    finding: "原视频 1:23 与 1:27 两次说 he just read off the teleprompter；speakers.py 两遍标注一致，均为勒布朗"
+    evidence: [e1, e2]
+  - question: "“那段广告拍得并不好”是否符合原话"
+    asserts: "那段广告拍得并不好"
+    scope: attribution
+    verdict: 措辞放大
+    finding: "说话人是勒布朗，但原话只有 wasn't good，没说什么不好；中立那遍还听成 that's good。“广告拍得”是转述补出来的"
+    evidence: [e1, e2]
+overall: 措辞放大
+overall_scope: "总标签管核心问题：“那段广告拍得并不好”是转述补出来的。没看广告、费城不会更暖和、“照着提词器念”三处准确，确是勒布朗本人所说"
+event: null
+evidence:
+  e1:
+    url: https://www.youtube.com/watch?v=zNaVP54W_VY
+    publisher: Mind the Game（YouTube 原视频与自动字幕）
+    published: 2026-10-13
+    kind: primary
+    access: full
+    supports: true
+    note: "1:27 Yeah, he just read off the teleprompter. 1:28 Uh wasn't good. 结尾 Bring them at me. I'm used to it."
+  e2:
+    url: null
+    publisher: speakers.py（gemini-2.5-flash 两遍标注，参照句 I went to Philly）
+    published: 2026-10-17
+    kind: secondary
+    access: full
+    supports: true
+    note: "四句重点句两遍一致：need to edit some writing 为纳什，teleprompter 与 wasn't good 为勒布朗"
+missing: "wasn't good 与 that's good 的听写分歧，需人听 1:27 至 1:30 确认"
+notes: "虎扑未译结尾 Bring them at me. I'm used to it.，语气比原话更像回怼"
+review:
+  status: pending                    # 示例未经独立复核，所以 publishable 均为 false
+  by: null
+  at: null
+  note: null
+display:
+  layout: quote
+  headline: "提词器是他说的，“拍得不好”是补的"
+  claim_short: "詹姆斯：他只是照着提词器念，广告拍得不好"
+  stamp: 措辞放大
+  why: "原话只有wasn't good，没说什么不好"
+  quote_pair:
+    speaker: 勒布朗·詹姆斯
+    original: "Yeah, he just read off the teleprompter. Uh wasn't good."
+    faithful: "对，他就是照着提词器念的。嗯，不太行。"
+    relayed: "他只不过是照着提词器念台词罢了，那段广告拍得并不好"
+    drift: "原话没说什么不好，“广告拍得”是补的"
+    where: "Mind the Game 赛季前瞻 1:27"
+  sources_line: "依据：Mind the Game原视频；两遍说话人标注"
+  cutoff: "截至 10-17 19:40"
+  publishable: false
+  review_reason: "未经独立复核"

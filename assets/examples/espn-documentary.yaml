@@ -1,0 +1,126 @@
+# 复盘案例 C：ESPN 纪录片与"辟谣"（layout: chain）。核心问题是“否认类比”被一级级放大成“否认拍纪录片”。
+criteria_version: nba-fact-check/7
+checked_at: 2026-10-17T21:30+08:00
+supersedes: null
+next_check: 2026-11-17
+claim: "詹姆斯暂无退役时间表 也没有拍摄个人纪录片计划"
+claim_source:
+  url: https://www.cntv-sports.com/34675/nqxD2224/
+  publisher: “CCTV5直播网”（cntv-sports.com，非央视官方）
+  published: 2026-08-01
+english_source:
+  found: true
+  who: Maverick Carter（X 发文，NY Post 引述）
+  url: https://nypost.com/2026/07/30/sports/lebron-james-maverick-carter-deny-last-dance-style-series/
+  excerpt: "We are NOT doing anything like the 'last dance.' LeBron doesn't even know when his last season is."
+  searched: []
+  zh_earlier: false
+earliest_source:
+  url: https://nypost.com/2026/07/30/sports/lebron-james-maverick-carter-deny-last-dance-style-series/
+  who: Maverick Carter（X 发文，勒布朗转发）
+  tier: official
+  published: 2026-07-30
+points:
+  - question: "詹姆斯是否在与 ESPN 谈纪录片"
+    asserts: "此前美国知名体育媒体爆料，詹姆斯正和 ESPN 深入洽谈合作"
+    scope: fact
+    verdict: 无法证实
+    finding: "The Athletic 记者 Andrew Marchand 07-30 报道接近达成（1-yard line）；截至 10-17 未见 ESPN 或本人官宣"
+    evidence: [e1]
+  - question: "团队是否否认拍纪录片"
+    asserts: "詹姆斯及其团队正式对外辟谣……现阶段也不会拍摄……纪录片（标题：没有拍摄个人纪录片计划）"
+    scope: attribution
+    verdict: 虚假
+    finding: "Maverick Carter 原话：We are NOT doing anything like the last dance. LeBron doesn't even know when his last season is. 否认的是告别式定位，不是纪录片本身"
+    evidence: [e2, e4]
+    l3_ok:
+      platform: X
+      verbatim: [e2, e4]
+      handle: "e2 NY Post 与 e4 People 正文都写明 Carter wrote on X；具体账号未直接核对（网页快照里没有内嵌帖子，原帖链接只见于论坛转载，不作证据）"
+      counter_evidence: "检索帖子伪造、账号仿冒、媒体更正，未见；多家报道勒布朗转发了该帖"
+  - question: "团队是否给出“拒绝开拍告别向纪录片”等解释"
+    asserts: "詹姆斯团队解释，之所以拒绝开拍告别向纪录片，也是不想被“即将退役”的标签束缚心态"
+    scope: attribution
+    verdict: 查无出处
+    finding: "原稿中这段“团队解释”在英文报道里找不到任何对应说法"
+    evidence: []
+    searched:
+      - "LeBron James documentary \"Last Dance\" comparison responds quote August 2026"
+      - "LeBron ESPN Last Dance style documentary deal official after:2026-08-05"
+      - "马弗里克卡特 最后一舞 詹姆斯 纪录片 before:2026-08-03"
+  - question: "詹姆斯是否说过“有一部很棒的纪录片在路上”"
+    asserts: "（懂球帝 08-12 转述）詹姆斯：我也有一部很棒的纪录片在路上"
+    scope: attribution
+    verdict: 无法证实
+    finding: "只见懂球帝等中文转述，原始场合未找到"
+    evidence: [e3]
+overall: 虚假
+event:
+  modality: 有望
+  status: 传闻中
+  independent_sources: 1
+evidence:
+  e1:
+    url: https://sports.yahoo.com/articles/lebron-james-reportedly-near-deal-145854087.html
+    publisher: NBC Sports（转述 The Athletic 记者 Andrew Marchand）
+    published: 2026-07-30
+    kind: secondary
+    access: L3
+    supports: true
+    note: "LeBron and ESPN close to a deal; talks at the 1-yard line；“Last Dance”类比是记者自己加的"
+  e2:
+    url: https://nypost.com/2026/07/30/sports/lebron-james-maverick-carter-deny-last-dance-style-series/
+    publisher: New York Post（引述 Maverick Carter 在 X 上的原文）
+    published: 2026-07-30
+    kind: secondary
+    access: L3
+    supports: false
+    note: "We are NOT doing anything like the last dance. LeBron doesn't even know when his last season is；标题写成 vehemently denies，已有放大"
+  e3:
+    url: https://www.dongqiudi.com/
+    publisher: 懂球帝
+    published: 2026-08-12
+    kind: secondary
+    access: L3
+    supports: true
+    note: "詹姆斯：我也有一部很棒的纪录片在路上"
+  e4:
+    url: https://people.com/lebron-james-business-partner-shoots-down-reports-docuseries-final-nba-season-12031356
+    publisher: People
+    published: 2026-07-30
+    kind: secondary
+    access: L3
+    supports: false
+    note: "We are NOT doing anything like the 'last dance' LeBron doesn't even know when his last season is, Carter wrote on X on Thursday, July 30"
+missing: "ESPN 或詹姆斯团队的正式公告；08-10 那句话的原始视频或采访"
+notes: "复盘：08-01 截止时即可判为虚假，Carter 原话当天就能查到。ESPN 合作至 10-17 仍无官宣，按交易类“两周无进展”的门槛会被判成不了了之，但媒体、商业合作常常沉寂数月后才公布，这个门槛对它不适用，见 SKILL.md 复查节奏。"
+review:
+  status: pending                    # 示例未经独立复核，所以 publishable 均为 false
+  by: null
+  at: null
+  note: null
+display:
+  layout: chain
+  headline: "团队否认的是“告别”定位，不是纪录片"
+  claim_short: "詹姆斯没有拍摄个人纪录片计划"
+  stamp: 虚假
+  why: "Carter只说不是《最后一舞》式告别片"
+  chain:
+    - who: CCTV5直播网
+      tier: farm
+      note: "变成“没有纪录片计划”"
+      drifted: true
+    - who: NY Post标题
+      tier: outlet
+      note: "写成vehemently denies"
+      drifted: true
+    - who: Maverick Carter
+      tier: official
+      note: "只否认告别式定位"
+    - who: Marchand报道
+      tier: outlet
+      note: "接近达成，类比是记者加的"
+  sources_line: "依据：Maverick Carter原文（NY Post引述）；The Athletic记者Andrew Marchand"
+  cutoff: "截至 10-17 21:30"
+  publishable: false
+  review_reason: "结论点名评价具体媒体，发布前需人过目"

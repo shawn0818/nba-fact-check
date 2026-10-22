@@ -1,0 +1,307 @@
+# check_verdict.py 的回归用例：在 assets/examples/ 的合格示例上做"变异"，断言检查器的反应。
+#
+# 为什么用变异而不是手写整份坏样本：规则加了新的必填字段时，手写的坏样本会因为"缺新字段"全部失败，
+# 再也测不出它原本要测的那条规则（2026-10-19 实际发生过）。以合格示例为底、每次只改一处，
+# 只要示例本身随规则更新，这里的用例就一直有效。
+#
+# 每个用例：
+#   name    用例名，说明测的是哪条规则
+#   base    底板，assets/examples/ 下的文件名
+#   ops     依次执行的改动：{set: 路径, value: 值} 或 {delete: 路径}
+#           路径用点号和方括号：display.headline、points[0].verdict、evidence.e1.access
+#   errors  期望出现的错误（每条是错误信息里的一段文字，都要找到）
+#   warnings 期望出现的提醒
+#   pass    true 表示期望 0 个错误
+#
+# 新增或修改检查规则时：在这里加一条能触发它的用例，再跑 python scripts/selftest.py。
+
+cases:
+  # ---------- 中文说法与英文源 ----------
+  - name: 中文说法缺 english_source
+    base: teleprompter-quote.yaml
+    ops: [{delete: english_source}]
+    errors: ["必须填 english_source"]
+  - name: 没找到英文源却没列检索词
+    base: heat-firing.yaml
+    ops: [{set: english_source.searched, value: []}]
+    errors: ["必须列出 searched"]
+  - name: independent_primary 不是布尔值
+    base: heat-firing.yaml
+    ops: [{set: english_source.independent_primary, value: "yes"}]
+    errors: ["independent_primary 必须是 true 或 false"]
+  - name: directly_accessed 不是布尔值
+    base: teleprompter-quote.yaml
+    ops: [{set: english_source.directly_accessed, value: "部分"}]
+    errors: ["directly_accessed 必须是 true 或 false"]
+  - name: 认出出处但没读到原文时可以不写原句
+    base: contract-388.yaml
+    ops: [{set: english_source.directly_accessed, value: false}, {delete: english_source.excerpt}]
+    pass: true
+  - name: 没读到原文却写了原句、没注明摘自哪里
+    base: contract-388.yaml
+    ops: [{set: english_source.directly_accessed, value: false}]
+    pass: true
+    warnings: ["excerpt_source"]
+  - name: 读到了原文却没写原句
+    base: teleprompter-quote.yaml
+    ops: [{delete: english_source.excerpt}]
+    errors: ["必须填 excerpt"]
+  - name: 没找到上游时缺 independent_primary
+    base: heat-firing.yaml
+    ops: [{delete: english_source.independent_primary}]
+    errors: ["必须填 independent_primary"]
+
+  # ---------- 核查点 ----------
+  - name: 判定标签不在标签表里
+    base: teleprompter-quote.yaml
+    ops: [{set: "points[0].verdict", value: 部分虚假}]
+    errors: ["不在标签表里"]
+  - name: 核查点缺 asserts
+    base: teleprompter-quote.yaml
+    ops: [{delete: "points[0].asserts"}]
+    errors: ["缺少 asserts"]
+  - name: scope 取值不对
+    base: teleprompter-quote.yaml
+    ops: [{set: "points[0].scope", value: both}]
+    errors: ["scope 应为"]
+  - name: 两个点摘同一句 asserts 却给出不同结论
+    base: teleprompter-quote.yaml
+    ops: [{set: "points[2].asserts", value: "他只不过是照着提词器念台词罢了"}]
+    errors: ["结论却不同"]
+  - name: 两个点摘同一句 asserts、结论相同只提醒
+    base: teleprompter-quote.yaml
+    ops: [{set: "points[1].asserts", value: "首先，我根本没看那段广告……难道费城就更暖和吗？"}]
+    pass: true
+    warnings: ["可以合并"]
+  - name: 事实点判准确却没写 basis
+    base: contract-388.yaml
+    ops: [{delete: "points[0].basis"}]
+    errors: ["必须写 basis"]
+  - name: basis 写 primary 但证据里没有一手
+    base: contract-388.yaml
+    ops: [{set: "points[0].basis", value: primary}]
+    errors: ["没有一手证据"]
+  - name: basis 写 reports 但只有一个发布者
+    base: contract-388.yaml
+    ops: [{set: "points[0].evidence", value: [e1]}]
+    errors: ["不足两个不同的发布者"]
+  - name: basis 写 reports 却没写 basis_note
+    base: contract-388.yaml
+    ops: [{delete: "points[0].basis_note"}]
+    errors: ["必须写 basis_note"]
+  - name: 引用了不存在的证据
+    base: teleprompter-quote.yaml
+    ops: [{set: "points[0].evidence", value: [e9]}]
+    errors: ["不存在的证据 e9"]
+  - name: 证据缺取证层级
+    base: teleprompter-quote.yaml
+    ops: [{delete: evidence.e1.access}]
+    errors: ["access 应为"]
+  - name: out_of_scope 不是列表
+    base: torre-investigation.yaml
+    ops: [{set: out_of_scope, value: "none"}]
+    errors: ["out_of_scope 应该是列表"]
+  - name: out_of_scope 的条目写成一句话
+    base: torre-investigation.yaml
+    ops: [{set: "out_of_scope[0]", value: "稿中的数字未核"}]
+    errors: ["要写成"]
+  - name: out_of_scope 的条目缺不核的原因
+    base: torre-investigation.yaml
+    ops: [{delete: "out_of_scope[1].reason"}]
+    errors: ["要写成"]
+  - name: 判据版本对不上
+    base: teleprompter-quote.yaml
+    ops: [{set: criteria_version, value: nba-fact-check/0}]
+    errors: ["criteria_version"]
+
+  # ---------- L3 规则 ----------
+  - name: 只有转述却判准确、没写 l3_ok
+    base: torre-investigation.yaml
+    ops: [{delete: "points[6].l3_ok"}]
+    errors: ["判为「准确」，但引用的证据全是转述"]
+  - name: 写了 l3_ok 时降为提醒（合格示例本身）
+    base: torre-investigation.yaml
+    ops: []
+    pass: true
+    warnings: ["按 l3_ok 放行"]
+  - name: 误导判定同样受 L3 规则约束
+    base: torre-investigation.yaml
+    ops: [{set: "points[5].evidence", value: [e3]}]
+    errors: ["判为「误导」，但引用的证据全是转述"]
+  # l3_ok 的结构（第三轮盲测后改成结构化四项，2026-10-19）
+  - name: l3_ok 写成一段自由文本
+    base: torre-investigation.yaml
+    ops: [{set: "points[6].l3_ok", value: "两家媒体都逐字转载了，没见反证"}]
+    errors: ["结构化的四项"]
+  - name: l3_ok 平台不是进不去的社媒
+    base: torre-investigation.yaml
+    ops: [{set: "points[6].l3_ok.platform", value: 微博}]
+    errors: ["platform 应为"]
+  - name: l3_ok 只列一条逐字收录
+    base: torre-investigation.yaml
+    ops: [{set: "points[6].l3_ok.verbatim", value: [e4]}]
+    errors: ["至少要列两条"]
+  - name: l3_ok 的逐字收录不在本点证据里
+    base: torre-investigation.yaml
+    ops: [{set: "points[6].l3_ok.verbatim", value: [e4, e1]}]
+    errors: ["不在本点引用的证据里"]
+  - name: l3_ok 两条逐字收录出自同一家
+    base: torre-investigation.yaml
+    ops: [{set: "points[6].l3_ok.verbatim", value: [e4, e4]}]
+    errors: ["至少两个不同的发布者"]
+  - name: l3_ok 缺 handle
+    base: torre-investigation.yaml
+    ops: [{delete: "points[6].l3_ok.handle"}]
+    errors: ["handle 必填"]
+  - name: l3_ok 缺反证检索
+    base: torre-investigation.yaml
+    ops: [{delete: "points[6].l3_ok.counter_evidence"}]
+    errors: ["counter_evidence 必填"]
+
+  # ---------- 汇总 ----------
+  - name: 准确与无法证实混合却没写 overall_scope
+    base: contract-388.yaml
+    ops: [{delete: overall_scope}]
+    errors: ["必须写 overall_scope"]
+  - name: 准确与措辞放大混合也要写 overall_scope
+    base: teleprompter-quote.yaml
+    ops: [{delete: overall_scope}]
+    errors: ["必须写 overall_scope"]
+
+  # ---------- 复查、时间线 ----------
+  - name: 填了 supersedes 却没写 change
+    base: torre-investigation.yaml
+    ops: [{delete: change}]
+    errors: ["必须填 change"]
+  - name: 时间线时区取值不对
+    base: heat-firing.yaml
+    ops: [{set: "timeline[0].tz", value: 美西}]
+    errors: ["tz 应为"]
+  - name: 时间线混用时区
+    base: heat-firing.yaml
+    ops: [{set: "timeline[0].tz", value: 北京}]
+    pass: true
+    warnings: ["混用了多个时区"]
+  - name: 有因果关系的说法没写时间线
+    base: heat-firing.yaml
+    ops: [{delete: timeline}]
+    pass: true
+    warnings: ["建议填 timeline"]
+
+  # ---------- 复核与发布 ----------
+  - name: 未通过复核却标成可发布
+    base: teleprompter-quote.yaml
+    ops: [{set: display.publishable, value: true}, {set: display.review_reason, value: null}]
+    errors: ["review.status 必须是 passed"]
+  - name: 复核有分歧却标 passed
+    base: torre-investigation.yaml
+    ops: [{set: "review.points[0].agree", value: false}]
+    errors: ["不能是 passed"]
+  - name: 复核通过却没写复核者
+    base: torre-investigation.yaml
+    ops: [{set: review.by, value: null}]
+    errors: ["必须写 review.by"]
+  - name: publishable 不是布尔值
+    base: teleprompter-quote.yaml
+    ops: [{set: display.publishable, value: "no"}]
+    errors: ["必须是 true 或 false"]
+
+  # ---------- display 写作规则 ----------
+  - name: 标题用问句
+    base: teleprompter-quote.yaml
+    ops: [{set: display.headline, value: "提词器是他说的吗？"}]
+    errors: ["不能是问句"]
+  - name: 标题用否定式
+    base: teleprompter-quote.yaml
+    ops: [{set: display.headline, value: "没说广告拍得不好"}]
+    pass: true
+    warnings: ["否定式"]
+  - name: 用了"假新闻"
+    base: teleprompter-quote.yaml
+    ops: [{set: display.why, value: "这是一条假新闻"}]
+    errors: ["不用“假新闻”"]
+  - name: 写刷屏却没有传播数据
+    base: teleprompter-quote.yaml
+    ops: [{set: display.why, value: "这条已经刷屏了"}]
+    pass: true
+    warnings: ["没有传播数据"]
+  - name: display 里放网址
+    base: teleprompter-quote.yaml
+    ops: [{set: display.sources_line, value: "依据：https://example.com/a"}]
+    errors: ["不放网址"]
+  - name: 截止时间和 checked_at 对不上
+    base: teleprompter-quote.yaml
+    ops: [{set: display.cutoff, value: "截至 10-18 09:00"}]
+    errors: ["对不上"]
+  - name: 标题超长
+    base: teleprompter-quote.yaml
+    ops: [{set: display.headline, value: "提词器这句话确实是勒布朗本人说的而那段广告拍得不好则是补出来的"}]
+    errors: ["超过上限"]
+  - name: 印章不在标签表里
+    base: teleprompter-quote.yaml
+    ops: [{set: display.stamp, value: 部分虚假}]
+    errors: ["stamp 不在标签表里"]
+  - name: quote 版式缺忠实译文
+    base: teleprompter-quote.yaml
+    ops: [{delete: display.quote_pair.faithful}]
+    errors: ["quote_pair 缺少 faithful"]
+  - name: 溯源链没有标出变形的环节
+    base: espn-documentary.yaml
+    ops: [{set: "display.chain[0].drifted", value: false}, {set: "display.chain[1].drifted", value: false}]
+    errors: ["没有任何节点标 drifted"]
+  - name: 阶梯格位取值不对
+    base: kcp-buyout.yaml
+    ops: [{set: display.ladder.level, value: 签了}]
+    errors: ["ladder.level"]
+
+  # ---------- 只搬运不新增：数字 ----------
+  - name: 数字只在原说法里，却被当成核实结果展示
+    base: contract-388.yaml
+    ops: [{set: claim, value: "詹姆斯年薪7777万"}, {set: display.why, value: "核实为7777万"}]
+    errors: ["7777"]
+  - name: 数字只在核查点的问题里
+    base: contract-388.yaml
+    ops: [{set: "points[2].question", value: "是否为7777万"}, {set: display.why, value: "核实为7777万"}]
+    errors: ["7777"]
+  - name: 数字只在检索词里
+    base: heat-firing.yaml
+    ops: [{set: english_source.searched, value: ["Heat fired 7777 staff"]}, {set: display.why, value: "解雇了7777人"}]
+    errors: ["7777"]
+  - name: 展示原说法的字段可以用原说法里的数字
+    base: contract-388.yaml
+    ops: [{set: claim, value: "詹姆斯年薪7777万"}, {set: display.claim_short, value: "詹姆斯年薪7777万"}]
+    pass: true
+
+  # ---------- 只搬运不新增：专名与原话 ----------
+  - name: 新增外文专名
+    base: teleprompter-quote.yaml
+    ops: [{set: display.why, value: "BBC称原话没说什么不好"}]
+    errors: ["外文专名「BBC」"]
+  - name: 阶梯备注里新增外文专名
+    base: kcp-buyout.yaml
+    ops: [{set: "display.ladder.history[0].note", value: "BBC首报"}]
+    errors: ["外文专名「BBC」"]
+  - name: display 里写证据编号不算新增数字
+    base: teleprompter-quote.yaml
+    ops: [{set: display.quote_pair.drift, value: "原话没说什么不好，见 e1、e2"}]
+    pass: true
+  - name: 不相连的两句硬拼成一句会被拦，并提示用省略号
+    base: teleprompter-quote.yaml
+    ops: [{set: display.quote_pair.original, value: "I did not watch the spot. Yeah, he just read off the teleprompter."}]
+    errors: ["用 ... 隔开"]
+  - name: 卡片原句里有媒体转录的方括号补字也能对上
+    base: teleprompter-quote.yaml
+    ops: [{set: display.quote_pair.original, value: "Yeah, [he] just read off the teleprompter."}]
+    pass: true
+  - name: 英文原话不在证据里
+    base: teleprompter-quote.yaml
+    ops: [{set: display.quote_pair.original, value: "He said the ad was terrible and boring."}]
+    errors: ["找不到原文"]
+  - name: 新增中文机构名
+    base: contract-388.yaml
+    ops: [{set: display.sources_line, value: "依据：环球通讯社"}]
+    errors: ["机构名「环球通讯社」"]
+  - name: “某某等媒体”这类泛指不算新增机构
+    base: contract-388.yaml
+    ops: [{set: display.sources_line, value: "依据：Spotrac等媒体"}]
+    pass: true

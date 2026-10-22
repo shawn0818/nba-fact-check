@@ -1,0 +1,117 @@
+# 案例一：合同金额（layout: number）。过程见 references/cases.md。
+criteria_version: nba-fact-check/7
+checked_at: 2026-10-17T16:10+08:00
+supersedes: null
+next_check: null
+claim: "詹姆斯388万年薪很超值"
+claim_source:
+  url: https://baijiahao.baidu.com/s?id=1879260689465669612
+  publisher: 百家号
+  published: 2026-10-17
+english_source:
+  found: true
+  who: Shams Charania（NY Post 援引）
+  url: https://nypost.com/2026/07/24/sports/lebron-james-stunning-new-contract-revealed-after-76ers-decision/
+  excerpt: "James agreed to a two-year, $8 million contract with the 76ers that includes a player option, according to ESPN's Shams Charania."
+  searched: []
+  zh_earlier: false
+earliest_source:
+  url: https://nypost.com/2026/07/24/sports/lebron-james-stunning-new-contract-revealed-after-76ers-decision/
+  who: Shams Charania
+  tier: insider
+  published: 2026-07-24
+points:
+  - question: "合同是否为 2 年 800 万美元、第二年球员选项"
+    asserts: "（正文）两年 800 万美元，第二年球员选项"
+    scope: fact
+    verdict: 准确
+    basis: reports
+    basis_note: "两路互相独立：Shams Charania（具名，经 NY Post、NBA 中国转述，二者同源只算一路）与 Spotrac 薪资数据库（第二年球员选项 4,070,355 美元，与总额吻合）"
+    finding: "Shams Charania 首报 2 年 800 万美元、含球员选项，NY Post 等援引一致（均为转述）；Spotrac 第二年球员选项 4,070,355 美元与总额吻合，作为独立佐证"
+    evidence: [e1, e2, e4]
+  - question: "是否已正式签约"
+    asserts: "（正文）詹姆斯加盟 76人"
+    scope: fact
+    verdict: 准确
+    basis: primary
+    finding: "官方球员变动记录：2026-07-26 Philadelphia 76ers signed forward LeBron James to a Contract"
+    evidence: [e3]
+  - question: "388 万是否为第一年、币种是否为美元"
+    asserts: "詹姆斯388万年薪"
+    scope: fact
+    verdict: 无法证实
+    finding: "中文稿普遍写首年 388 万美元；Spotrac 第二年球员选项为 4,070,355 美元，与总额 800 万相符，但首年精确数字未见一手来源"
+    evidence: [e2, e4]
+  - question: "是否为老将底薪"
+    asserts: "（正文）以老将底薪加盟"
+    scope: fact
+    verdict: 无法证实
+    finding: "多家媒体如此描述，底薪标准只见于百科类二手整理，不作为证据"
+    evidence: [e5]
+overall: 准确
+overall_scope: "总标签管核心说法：合同两年 800 万美元、已正式签约。首年精确金额与“老将底薪”两点无法证实，见核查点 3、4"
+event: null
+evidence:
+  e1:
+    url: https://nypost.com/2026/07/24/sports/lebron-james-stunning-new-contract-revealed-after-76ers-decision/
+    publisher: New York Post
+    published: 2026-07-24
+    kind: secondary
+    access: L3
+    supports: true
+    note: "援引 ESPN 的 Shams Charania：两年 800 万美元，含球员选项"
+  e2:
+    url: https://china.nba.cn/article/2607251932449501
+    publisher: NBA 中国官网
+    published: 2026-07-25
+    kind: secondary
+    access: L3
+    supports: true
+    note: "据 Shams Charania 报道：两年 800 万美元，首年 388 万美元，第二年球员选项"
+  e3:
+    url: https://stats.nba.com/js/data/playermovement/NBA_Player_Movement.json
+    publisher: NBA 官方球员变动记录
+    published: 2026-07-26
+    kind: primary
+    access: full
+    supports: true
+    note: "2026-07-26 签约记录，不含金额"
+  e4:
+    url: https://www.spotrac.com/nba/philadelphia-76ers/
+    publisher: Spotrac
+    published: 2026-10-17
+    kind: secondary
+    access: full
+    supports: true
+    note: "2027-28 Player Option $4,070,355"
+  e5:
+    url: https://www.cnbce.com/spor-ekonomisi/nba-tarihinin-en-buyuk-maas-indirimi-para-icin-degil-sampiyonluk-icin-gitti-h33836
+    publisher: CNBC-e
+    published: 2026-07-26
+    kind: secondary
+    access: full
+    supports: true
+    note: "称其签下 veteran minimum 合同"
+missing: "首年精确金额需要 Spotrac 球员页或 HoopsHype 薪资页确认"
+notes: "稿中“历史最大降幅纪录”是独立的推算结论，本次未核查"
+review:
+  status: pending                    # 示例未经独立复核，所以 publishable 均为 false
+  by: null
+  at: null
+  note: null
+display:
+  layout: number
+  headline: "两年800万美元，首年约388万"
+  claim_short: "詹姆斯年薪388万"
+  stamp: 准确
+  why: "Shams首报两年800万美元；第二年选项数字与之吻合"
+  number:
+    label: "首年薪资"
+    claimed: "388万"
+    actual: "约388万美元"
+    unit_note: "美元，不是人民币"
+    basis: "Shams报道总额减Spotrac第二年选项反推"
+  sources_line: "依据：ESPN记者Shams Charania；NBA官方球员变动记录；Spotrac"
+  cutoff: "截至 10-17 16:10"
+  publishable: false
+  review_reason: "未经独立复核"

@@ -1,0 +1,101 @@
+# 复盘案例 B：KCP 买断后加盟 76人（layout: ladder）。这是复查后的最终状态块，history 记录了从传闻到官宣的全过程。
+criteria_version: nba-fact-check/7
+checked_at: 2026-08-05T20:00+08:00
+supersedes: 2026-07-25T14:00+08:00
+change:
+  type: 更新
+  note: "07-25 判为在谈/有望、传闻中，当时没错；此后官方记录显示 07-25 被裁、08-05 签约，状态推进到官宣"
+next_check: null
+claim: "Kentavious Caldwell-Pope reportedly negotiating buyout with Grizzlies, intends to reunite with LeBron James on Sixers"
+claim_source:
+  url: https://sports.yahoo.com/nba/article/kentavious-caldwell-pope-reportedly-negotiating-buyout-with-grizzlies-intends-to-reunite-with-lebron-james-on-sixers-042849275.html
+  publisher: Yahoo Sports
+  published: 2026-07-25
+earliest_source:
+  url: https://www.nbcsports.com/fantasy/basketball/player-news/2026-07-25/haynes-kcp-memphis-negotiating-contract-buyout
+  who: Chris Haynes（Prime Video）
+  tier: insider
+  published: 2026-07-25
+points:
+  - question: "KCP 是否与灰熊谈买断"
+    asserts: "Kentavious Caldwell-Pope reportedly negotiating buyout with Grizzlies"
+    scope: fact
+    verdict: 准确
+    basis: primary
+    finding: "Haynes 07-25 首报；官方球员变动记录 07-25 灰熊裁掉 KCP，买断当天完成"
+    evidence: [e1, e2]
+  - question: "KCP 是否加盟 76人"
+    asserts: "intends to reunite with LeBron James on Sixers"
+    scope: fact
+    verdict: 准确
+    basis: primary
+    finding: "07-26 Reuters 报道加盟；官方球员变动记录 2026-08-05 76人签下 KCP，距 07-25 Haynes 首报相隔 11 天"
+    evidence: [e3, e4]
+overall: 准确
+event:
+  modality: 官宣
+  status: 已证实
+  independent_sources: 1
+evidence:
+  e1:
+    url: https://www.nbcsports.com/fantasy/basketball/player-news/2026-07-25/haynes-kcp-memphis-negotiating-contract-buyout
+    publisher: NBC Sports（转述 Chris Haynes）
+    published: 2026-07-25
+    kind: secondary
+    access: L3
+    supports: true
+    note: "Haynes: KCP, Memphis negotiating contract buyout；RealGM、Sportando、Sportsnet 同日转述，均源自 Haynes，只算一个信源"
+  e2:
+    url: https://stats.nba.com/js/data/playermovement/NBA_Player_Movement.json
+    publisher: NBA 官方球员变动记录
+    published: 2026-07-25
+    kind: primary
+    access: full
+    supports: true
+    note: "2026-07-25 Memphis Grizzlies waived guard Kentavious Caldwell-Pope"
+  e3:
+    url: https://www.reuters.com/5f374b32b07b/sports/report-kentavious-caldwell-pope-joining-76ers-after-grizzlies-buyout--flm-2026-07-26/
+    publisher: Reuters
+    published: 2026-07-26
+    kind: secondary
+    access: L3
+    supports: true
+    note: "Report: Kentavious Caldwell-Pope joining 76ers after Grizzlies buyout"
+  e4:
+    url: https://stats.nba.com/js/data/playermovement/NBA_Player_Movement.json
+    publisher: NBA 官方球员变动记录
+    published: 2026-08-05
+    kind: primary
+    access: full
+    supports: true
+    note: "2026-08-05 Philadelphia 76ers signed guard Kentavious Caldwell-Pope"
+missing: null
+notes: "复盘：07-25 截止时应判为 在谈/有望、传闻中（多家媒体都在转述 Haynes，独立信源只有 1 个）。11 天后官宣，判定方向正确且没有说满。"
+review:
+  status: pending                    # 示例未经独立复核，所以 publishable 均为 false
+  by: null
+  at: null
+  note: null
+display:
+  layout: ladder
+  headline: "已官宣：KCP签约76人"
+  claim_short: "KCP谈买断，有意与詹姆斯重聚"
+  stamp: 准确
+  why: "从Haynes首报到官方签约用了11天"
+  ladder:
+    subject: "KCP加盟76人"
+    level: 官宣
+    status: 已证实
+    history:
+      - date: 2026-07-25
+        note: "Haynes首报谈买断"
+      - date: 2026-07-25
+        note: "官方：灰熊裁掉KCP"
+      - date: 2026-07-26
+        note: "Reuters报道加盟"
+      - date: 2026-08-05
+        note: "官方：76人签约"
+  sources_line: "依据：Chris Haynes首报；NBA官方球员变动记录"
+  cutoff: "截至 08-05 20:00"
+  publishable: false
+  review_reason: "未经独立复核"

@@ -1,0 +1,234 @@
+# 案例二：进行中的"调查风波"（layout: quote，核心问题是引语后半句被删）。过程见 references/cases.md。
+# 2026-10-19 经 Codex 三轮独立复核后修订：第一轮 7 点里 5 点不一致，第二轮 9 点里 2 点不一致，第三轮 8 点全部一致、另提出一个漏点；第四轮 9 点里 1 点不一致，作者采纳复核者判定后通过。见 change.note。
+criteria_version: nba-fact-check/7
+checked_at: 2026-10-19T13:00+08:00
+supersedes: 2026-10-19T12:10+08:00
+change:
+  type: 更正
+  note: "第四轮复核：第 8 点作者原判措辞放大，复核者判误导（原文是公开谴责对方言行，'扒出来'变成了要挖身份，意思变了而不只是强度变了），作者采纳。第三轮复核后补一点：搜狐把蔡崇信推文后半句译成'你该被扒出来'，原文是 you should be called out for who you are，新增为第 9 点（措辞放大）。第二轮复核后的修订：'托雷在查'一点的断言是'正在深查所有细节'，比原话强，改判措辞放大；删去'标题暗示联盟在调查'一点（搜狐正文已明确'是他在查，不是NBA官方立案'）；蔡崇信推文的第二个逐字来源换成英文原文（Yardbarker 转载 HITC），中文译文不算；补 locator、searched 和两条 out_of_scope。此前第一轮复核后的修订：第 2 点原证据只是 Fanatics 新闻目录页的标题，补了 The Athletic 和 NBC Sports Philadelphia 的报道；第 4 点拆成归因（托雷确实这样说）和事实（老板是否真的联系）两点；第 7 点拆成标题暗示的联盟调查和正文的'没发声也没立案'两点；蔡崇信推文补第二家逐字收录以满足 l3_ok 三条；每点补 asserts、scope、basis；补 out_of_scope"
+next_check: 2026-10-24
+claim: "10.17日：篮网队老板发声力挺巴勃罗托雷，詹姆斯调查风波再起波澜"
+claim_source:
+  url: https://www.sohu.com/a/1088780260_121142344
+  publisher: 搜狐号
+  published: 2026-10-17
+english_source:
+  found: true
+  who: Pablo Torre（FOS Tuned In 会议，官方视频 21:04-21:20）
+  url: https://www.youtube.com/watch?v=19S0nIvxfoY
+  excerpt: "...as well as something of interest to the league. And by the way, it may not be the latter."
+  searched: []
+  zh_earlier: false
+earliest_source:
+  url: https://www.youtube.com/watch?v=19S0nIvxfoY
+  who: Pablo Torre（FOS Tuned In 会议发言）
+  tier: outlet
+  published: 2026-10-13
+points:
+  - question: "直升机通勤是否属于他和 Fanatics 的商业合作"
+    asserts: "坐的是印着Fanatics标志的直升机……这是他跟Fanatics商业合作的一部分"
+    scope: fact
+    verdict: 准确
+    basis: reports
+    basis_note: "两路互相独立：FOS 记者 Daniel Roberts（具名）与 TMZ 各自报道；合同本身未公开"
+    finding: "报道级：FOS 记者 Daniel Roberts（具名）与 TMZ 两家独立报道一致，均称直升机使用权属于他与 Fanatics 的长期协议；合同本身未公开"
+    evidence: [e1, e6]
+  - question: "鲁宾是否曾为 76人股东，并已在 2022 年退出"
+    asserts: "Fanatics老板迈克尔·鲁宾，以前就是76人小股东。2022年才把股份卖干净"
+    scope: fact
+    verdict: 准确
+    basis: reports
+    basis_note: "两路互相独立：The Athletic 与 NBC Sports Philadelphia 2022-10-20 各自报道鲁宾出售 HBSE 股份"
+    finding: "报道级：The Athletic 与 NBC Sports Philadelphia 2022-10-20 均报道鲁宾出售其在 HBSE（76人母公司）的股份，由 David Adelman 接手"
+    evidence: [e8, e9]
+  - question: "托雷是否说过“我们非常感兴趣，正在深查所有细节”"
+    asserts: "托雷原话是：「我们非常感兴趣，正在深查所有细节」"
+    scope: attribution
+    verdict: 措辞放大
+    finding: "FOS 官方录像 21:04 起：we're very interested and we are, of course, looking into all the ways that it is both a good story as well as something of interest to the league——他说在研究这件事值不值得报道、联盟会不会感兴趣，没有说'深查所有细节'；在查的主语是托雷及其团队，不是联盟"
+    evidence: [e3, e5]
+  - question: "托雷是否说过有不止一位老板联系他"
+    asserts: "他还说，已经有不止一个NBA老板私信他"
+    scope: attribution
+    verdict: 准确
+    finding: "FOS 官方录像中托雷称收到 NBA owners 转来报道询问，复数与“不止一个”相符"
+    evidence: [e5]
+  - question: "确实有多位 NBA 老板联系了托雷吗"
+    asserts: "已经有不止一个NBA老板私信他，把报道转过来问「这啥情况」"
+    scope: fact
+    verdict: 无法证实
+    finding: "只有托雷本人的说法，老板均匿名，无法独立核实"
+    evidence: [e5]
+  - question: "托雷是否说过“这也是联盟会感兴趣的事”"
+    asserts: "托雷原话是：「……这也是联盟会感兴趣的事。」"
+    scope: attribution
+    verdict: 误导
+    finding: "原话紧接着说 And by the way, it may not be the latter（联盟未必感兴趣），转述删掉了这句"
+    evidence: [e3, e5]
+  - question: "蔡崇信是否在 X 上发文支持托雷"
+    asserts: "篮网队老板发声力挺巴勃罗托雷（10月15日在X上发原话：「Pablo Torre是一位自豪的亚裔美国人，也是一位出色的记者……」）"
+    scope: attribution
+    verdict: 准确
+    finding: "推文原文谴责针对托雷的种族主义攻击，并称其为出色的记者；支持的是托雷本人及其报道工作，没有对此次调查的实质表态。发帖的精确时间未核（媒体报道时间为美东 10-15）"
+    evidence: [e4, e7]
+    l3_ok:
+      platform: X
+      verbatim: [e4, e7]
+      handle: "e4 HoopsHype 条目标明是 Joe Tsai 的发言并带被回应账号 @lockerroomla；e7 Yardbarker（转载 HITC）写明篮网老板蔡崇信在 X 上发文；蔡崇信本人的账号未直接核对"
+      counter_evidence: "检索帖子伪造、账号仿冒、媒体更正，未见"
+  - question: "蔡崇信推文后半句是否说了“你该被扒出来”"
+    asserts: "转头点名那个账号：「我不知道你是谁，但这种赤裸裸的种族主义令人不齿，你该被扒出来。」"
+    scope: attribution
+    verdict: 误导
+    finding: "原文后半句是 you should be called out for who you are（你这种人就该被公开点名指出来），是谴责对方的种族主义言行；'你该被扒出来'接在'我不知道你是谁'后面，读起来成了要追查对方身份——意思变了，不只是语气更重"
+    evidence: [e7, e10]
+    l3_ok:
+      platform: X
+      verbatim: [e7, e10]
+      handle: "e7 Yardbarker（转载 HITC）写明篮网老板蔡崇信在 X 上发文；e10 Fadeaway World 写明 wrote Tsai on X；蔡崇信本人的账号未直接核对"
+      counter_evidence: "检索帖子伪造、账号仿冒、媒体更正，未见"
+  - question: "NBA 官方是否没有发声、没有立案"
+    asserts: "NBA官方没发声，也没立案"
+    scope: fact
+    verdict: 无法证实
+    finding: "截至核查时未找到联盟的公开表态；但没找到立案的证据，不等于证明了没有立案"
+    evidence: []
+    searched:
+      - "NBA league office investigating LeBron James Fanatics helicopter statement"
+      - "NBA spokesperson LeBron helicopter Fanatics league review"
+      - "联盟 调查 詹姆斯 直升机 Fanatics（中文站点）"
+overall: 误导
+overall_scope: "总标签管核心问题：托雷原话被删掉限定句、暗示联盟介入。直升机协议、鲁宾股份为报道级准确；托雷称有老板联系、蔡崇信发声两处归因准确；'正在深查所有细节'比原话说得满，措辞放大；'你该被扒出来'把谴责言行译成了追查身份，误导；老板是否真的联系、联盟是否没立案无法证实"
+out_of_scope:
+  - asserts: "稿中首年 3,876,529 美元、一周飞十几次、单程 6000-9000 美元等数字"
+    reason: "与核心问题（托雷原话是否被删改、联盟是否调查）无关，本次未核"
+  - asserts: "詹姆斯发言人关于 2024 年 1 月签约、其他运动员也有同款权限等说法"
+    reason: "未核"
+  - asserts: "托雷关于'联盟消息人士猜测鲁宾在 Fanatics Fest 说服勒布朗'的引语、安东尼在 7PM in Brooklyn 的两段话"
+    reason: "未核"
+  - asserts: "快船被罚 5 个首轮加 3000 万美元的背景"
+    reason: "未核"
+  - asserts: "蔡崇信'之前詹姆斯被歧视、被质疑时没出来说话'"
+    reason: "作者的评论性说法，事件和时间范围不清，不核"
+  - asserts: "蔡崇信发帖的精确时间"
+    reason: "只有媒体报道时间（美东 10-15），原帖时间未核"
+event:
+  modality: none
+  status: 传闻中
+  independent_sources: 0
+evidence:
+  e1:
+    url: https://uk.sports.yahoo.com/news/lebrons-fanatics-branded-helicopter-part-174056414.html
+    publisher: HoopsHype（收录 FOS 记者 Daniel Roberts 原话）
+    published: 2026-10-05
+    kind: secondary
+    access: L3
+    supports: true
+    note: "直升机属于他与 Fanatics 的长期协议"
+  e2:
+    url: https://www.fanaticsinc.com/news/category/Company:+Michael+Rubin?year=2022
+    publisher: Fanatics Inc（新闻目录页，收录媒体报道标题）
+    published: 2022
+    kind: secondary
+    access: L1
+    supports: true
+    note: "目录页列出 NBC Sports 报道标题 Rubin Sells Sixers Stake；复核指出它不是原始公告，已改用 e8、e9"
+  e3:
+    url: https://sports.yahoo.com/articles/pablo-torre-looking-lebron-james-160009658.html
+    publisher: Yahoo Sports（引述托雷在 FOS Tuned In 会议上的原话）
+    published: 2026-10-13
+    kind: secondary
+    access: L3
+    supports: true
+    note: "something of interest to the league. And by the way, it may not be the latter."
+  e4:
+    url: https://www.hoopshype.com/story/sports/nba/rumors/2026/10/15/pablotorre-is-a-proud-asian-american-and-an-excellent/92270859007/
+    publisher: HoopsHype（收录蔡崇信推文）
+    published: 2026-10-15
+    kind: secondary
+    access: L3
+    supports: true
+    note: "PabloTorre is a proud Asian-American and an excellent journalist"
+  e5:
+    url: https://www.youtube.com/watch?v=19S0nIvxfoY
+    publisher: Front Office Sports 官方 YouTube（Tuned In 会议录像）
+    published: 2026-10-14
+    kind: primary
+    access: full
+    locator: "21:04-21:22（在查、联盟未必感兴趣）；22:03-22:22（老板联系）"
+    supports: true
+    note: "21:04-21:20：we're very interested ... something of interest to the league. And by the way, it may not be the latter. It does appear to be the former as a business story."
+  e6:
+    url: https://www.foxbangor.com/news/national/entertainment/lebron-james-free-to-fly-on-fanatics-chopper-part-of-deal-w-company/article_a94d4669-a5db-547e-a6e5-80091610e108.html
+    publisher: TMZ（经 FOX 22 转载）
+    published: 2026-10-04
+    kind: secondary
+    access: full
+    supports: true
+    note: "LeBron James Free to Fly On Fanatics Chopper, Part of Deal W/ Company"
+  e7:
+    url: https://www.yardbarker.com/nba/articles/brooklyn_nets_owner_defends_pablo_torre_from_blatant_racism_amid_lebron_james_investigation/s1_17664_44434909
+    publisher: Yardbarker（转载 HITC，英文逐字收录蔡崇信推文）
+    published: 2026-10-15
+    kind: secondary
+    access: L3
+    supports: true
+    note: "Brooklyn Nets owner defends Pablo Torre from 'blatant racism' amid LeBron James investigation"
+  e8:
+    url: https://www.nytimes.com/athletic/3714288/2022/10/20/david-adelman-michael-rubin-ownership-stake/
+    publisher: The Athletic
+    published: 2022-10-20
+    kind: secondary
+    access: L1
+    supports: true
+    note: "Philly businessman buying Rubin's HBSE stake"
+  e9:
+    url: https://www.nbcsportsphiladelphia.com/nba/rubin-sells-sixers-stake-as-david-adelman-becomes-limited-partner/257909/
+    publisher: NBC Sports Philadelphia
+    published: 2022-10-20
+    kind: secondary
+    access: L1
+    supports: true
+    note: "Rubin sells Sixers stake as David Adelman becomes limited partner"
+  e10:
+    url: https://www.newsbreak.com/fadeawayworld-net-1600311/4948808924408-nets-owner-openly-backs-pablo-torre-amid-lebron-james-investigation-backlash
+    publisher: Fadeaway World（经 NewsBreak 转载）
+    published: 2026-10-15
+    kind: secondary
+    access: L3
+    supports: true
+    note: "I don't know who you are, but this blatant racism is despicable, and you should be called out for who you are"
+missing: "联盟是否回应媒体询问"
+notes: "event 描述的是“联盟是否调查”；目前只有隐含说法，没有任何信源称联盟在查。稿中直升机费用、飞行次数等数字未核。"
+review:
+  status: passed
+  by: Codex（GPT-6）
+  at: '2026-10-19T15:14:39+08:00'
+  note: "四轮复核后各点判定一致，没有阻断性漏点；第 8 点作者采纳了复核者的判定"
+  points:
+    - {index: 1, author: 准确, reviewer: 准确, agree: true}
+    - {index: 2, author: 准确, reviewer: 准确, agree: true}
+    - {index: 3, author: 措辞放大, reviewer: 措辞放大, agree: true}
+    - {index: 4, author: 准确, reviewer: 准确, agree: true}
+    - {index: 5, author: 无法证实, reviewer: 无法证实, agree: true}
+    - {index: 6, author: 误导, reviewer: 误导, agree: true}
+    - {index: 7, author: 准确, reviewer: 准确, agree: true}
+    - {index: 8, author: 误导, reviewer: 误导, agree: true}
+    - {index: 9, author: 无法证实, reviewer: 无法证实, agree: true}
+display:
+  layout: quote
+  headline: "托雷原话：联盟未必会感兴趣"
+  claim_short: "名记暗示联盟将介入调查詹姆斯"
+  stamp: 误导
+  why: "转述删掉了托雷紧接着的限定句；未见联盟表态"
+  quote_pair:
+    speaker: Pablo Torre
+    original: "...as well as something of interest to the league. And by the way, it may not be the latter."
+    faithful: "……也是联盟会感兴趣的事。不过，联盟也未必会感兴趣。"
+    relayed: "这也是联盟会感兴趣的事"
+    drift: "删掉了紧跟的限定句"
+    where: "FOS Tuned In 会议发言"
+  sources_line: "依据：托雷在FOS会议上的原话；FOS记者Daniel Roberts报道"
+  cutoff: "截至 10-19 13:00"
+  publishable: false
+  review_reason: "已通过独立复核，但结论点名评价具体媒体的转述，发布前仍需人过目"
