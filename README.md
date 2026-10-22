@@ -18,11 +18,27 @@ An agent skill for fact-checking NBA news and rumors, with a focus on Chinese-la
 
 ## 安装
 
-skill 就是这个目录。放到 agent 能找到 skill 的地方：
+直接跟你的 agent 说一句就行：
 
-- **Claude Code**：克隆到 `~/.claude/skills/nba-fact-check`
-- **Codex**：克隆到 `~/.agents/skills/nba-fact-check`
-- **其他 agent**：让它先读 `SKILL.md`，再按需读 `references/` 下的文件
+> 帮我安装这个 skill：https://github.com/shawn0818/nba-fact-check
+
+更新也一样："帮我更新 nba-fact-check 这个 skill"。
+
+### 给 agent 的安装步骤
+
+如果你是正在帮用户安装的 agent，按下面做：
+
+1. **装到你读取 skill 的目录**，整个仓库就是一个 skill 目录：
+   - Claude Code：`~/.claude/skills/nba-fact-check`（只给某个项目用就放 `<项目>/.claude/skills/nba-fact-check`）
+   - Codex：`~/.agents/skills/nba-fact-check`
+   - 其他 agent：放到你读取 skill 或说明文件的位置；没有这种机制的，告诉用户 `SKILL.md` 的路径，以后核查时先读它
+   - 用 `git clone` 装，以后更新就是在这个目录里 `git pull`
+2. **检查依赖**：Python 3.10+；`python -c "import yaml"` 失败就 `pip install pyyaml`。yt-dlp、ffmpeg、Node.js 是可选的，缺了只影响视频类核查（找原视频、判断说话人），告诉用户缺了什么、影响什么，不要擅自装。
+3. **跑自测确认能用**：在 skill 目录里 `python scripts/selftest.py`，应该全部通过。没通过就把失败项告诉用户。
+4. **说明 key**：检索要 DeepSeek 的 key（`DEEPSEEK_API_KEY`），判断说话人要 OpenRouter 的 key（`OPENROUTER_API_KEY`），都是可选的——你自带网页搜索的话，不配 DeepSeek 也能核查。key 让用户自己写进环境变量或 `.env` 文件，**不要让用户把 key 发在对话里**。
+5. **告诉用户装好了，以及怎么用**：比如"核查一下'詹姆斯说你必须尊重我'这条"，或者直接贴一篇虎扑流言板、直播吧的文章。
+
+### 手动安装
 
 ```bash
 git clone https://github.com/shawn0818/nba-fact-check ~/.claude/skills/nba-fact-check
