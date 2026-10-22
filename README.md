@@ -35,7 +35,7 @@ An agent skill for fact-checking NBA news and rumors, with a focus on Chinese-la
    - 用 `git clone` 装，以后更新就是在这个目录里 `git pull`
 2. **检查依赖**：Python 3.10+；`python -c "import yaml"` 失败就 `pip install pyyaml`。yt-dlp、ffmpeg、Node.js 是可选的，缺了只影响视频类核查（找原视频、判断说话人），告诉用户缺了什么、影响什么，不要擅自装。
 3. **跑自测确认能用**：在 skill 目录里 `python scripts/selftest.py`，应该全部通过。没通过就把失败项告诉用户。
-4. **说明 key**：检索要 DeepSeek 的 key（`DEEPSEEK_API_KEY`），判断说话人要 OpenRouter 的 key（`OPENROUTER_API_KEY`），都是可选的——你自带网页搜索的话，不配 DeepSeek 也能核查。key 让用户自己写进环境变量或 `.env` 文件，**不要让用户把 key 发在对话里**。
+4. **不用配 key**：核查时用你自带的网页搜索和网页读取就行。只有用户主动问起时，再说明两个可选的 key（见下文"依赖"）；用户要配的话，让他自己写进环境变量或 `.env` 文件，**不要让用户把 key 发在对话里**。
 5. **告诉用户装好了，以及怎么用**：比如"核查一下'詹姆斯说你必须尊重我'这条"，或者直接贴一篇虎扑流言板、直播吧的文章。
 
 ### 手动安装
@@ -48,11 +48,10 @@ git clone https://github.com/shawn0818/nba-fact-check ~/.claude/skills/nba-fact-
 
 - Python 3.10+；脚本只用标准库，读写状态块的几个脚本要 `pip install pyyaml`
 - 可选：`yt-dlp`（取 YouTube 字幕）、`ffmpeg` 或 `pip install imageio-ffmpeg`（判断说话人时截音频）、Node.js（yt-dlp 下载部分 YouTube 视频时要用）
-- Key（只在用到对应脚本时需要，可以设环境变量，也可以用 `--env-file` 指向一个 `.env` 文件）：
-  - `DEEPSEEK_API_KEY`：`scripts/search.py` 用 DeepSeek 的 Search / Fetch 接口检索和抓取网页
-  - `OPENROUTER_API_KEY`：`scripts/speakers.py` 用能听音频的模型判断对谈里每句话是谁说的
-
-agent 自带网页搜索时，不配 DeepSeek 也能用，只是检索记账、索引快照这些功能用不上。
+- **不需要任何 key**：检索用 agent 自带的网页搜索和网页读取工具。
+- 两个可选的 key，配了能多做一点（设环境变量，或用 `--env-file` 指向一个 `.env` 文件）：
+  - `DEEPSEEK_API_KEY`：`scripts/search.py` 能带回 agent 自带工具抓不到的页面在搜索索引里存的正文（虎扑常超时），并给每次检索记账
+  - `OPENROUTER_API_KEY`：`scripts/speakers.py` 用能听音频的模型判断对谈里每句话是谁说的，只有引语出自播客、对谈时才用得上
 
 ## 目录
 

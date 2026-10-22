@@ -53,12 +53,14 @@ description: NBA 新闻与传闻的事实核查。当需要核实一条 NBA 相�
 
 ## 工具速查
 
-脚本在 `scripts/`，只用 Python 标准库（`check_verdict.py` 要 PyYAML）。需要 key 的（`search.py`、`speakers.py`）支持 `--env-file`。全部命令、参数和运行环境见 `references/tools.md`。
+脚本在 `scripts/`，只用 Python 标准库（`check_verdict.py` 要 PyYAML）。全部命令、参数和运行环境见 `references/tools.md`。
+
+**检索用你自带的网页搜索和网页读取工具就行，不需要任何 key。** 只有两个脚本要 key，都是可选的：`search.py`（DeepSeek）能带回自带工具抓不到的页面在搜索索引里存的正文（虎扑常超时），并给每次检索记账；`speakers.py`（OpenRouter）用能听音频的模型判断对谈里某句是谁说的，只有引语出自播客、对谈时才用得上。没配 key 时跳过这两个脚本，做不到的部分在结论里写明。
 
 | 要做的事 | 命令 |
 |---|---|
 | 把中文稿逐句拆出锚点（第一步） | `python scripts/zh_anchors.py 文章.txt` 或 `--text "标题"` |
-| 搜索、带回索引正文、抓网页 | `python scripts/search.py search "关键词 site:bbs.hupu.com after:2026-10-01" [--content]`；`search.py fetch URL` |
+| 搜索、抓网页 | 用你自带的工具；或者 `python scripts/search.py search "关键词 site:bbs.hupu.com after:2026-10-01" [--content]`、`search.py fetch URL`（要 DeepSeek key） |
 | 找原视频、定位原话 | `python scripts/captions.py --find "节目名 嘉宾 日期"`；`captions.py 视频地址或字幕文件 "关键词"` |
 | 判断对谈里某句是谁说的 | `python scripts/speakers.py 地址 --from 66 --to 100 --ref "74-77=甲" --lines "争议句"` |
 | 官方比赛与球员数据 | `python scripts/nba_boxscore.py game <比赛ID> --team PHI --all-stats`（`--periods 1-2` 核半场）；`schedule`、`player`、`career` 子命令 |
