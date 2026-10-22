@@ -7,7 +7,7 @@
 ## 一、状态块（YAML）
 
 ```yaml
-criteria_version: nba-fact-check/8   # 本 skill 的判据版本；判据改动时递增，缓存判定必须带上它
+criteria_version: nba-fact-check/9   # 本 skill 的判据版本；判据改动时递增，缓存判定必须带上它
 checked_at: 2026-10-17T15:30+08:00   # 截止时间，北京时间
 supersedes: null                     # 复查时填上一份状态块的 checked_at，旧块保留，形成时间线
 change: null                         # supersedes 不为空时必填：{type: 更正 / 更新, note: "改了什么、为什么"}

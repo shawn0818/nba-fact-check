@@ -1,6 +1,6 @@
 # 案例二：进行中的"调查风波"（layout: quote，核心问题是引语后半句被删）。过程见 references/cases.md。
 # 2026-10-19 经 Codex 三轮独立复核后修订：第一轮 7 点里 5 点不一致，第二轮 9 点里 2 点不一致，第三轮 8 点全部一致、另提出一个漏点；第四轮 9 点里 1 点不一致，作者采纳复核者判定后通过。见 change.note。
-criteria_version: nba-fact-check/8
+criteria_version: nba-fact-check/9
 checked_at: 2026-10-19T13:00+08:00
 supersedes: 2026-10-19T12:10+08:00
 change:

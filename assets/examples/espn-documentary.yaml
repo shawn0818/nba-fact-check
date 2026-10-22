@@ -1,5 +1,5 @@
 # 复盘案例 C：ESPN 纪录片与"辟谣"（layout: chain）。核心问题是“否认类比”被一级级放大成“否认拍纪录片”。
-criteria_version: nba-fact-check/8
+criteria_version: nba-fact-check/9
 checked_at: 2026-10-17T21:30+08:00
 supersedes: null
 next_check: 2026-11-17
